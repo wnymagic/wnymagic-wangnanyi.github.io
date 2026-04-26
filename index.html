@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nanyi Wang (王南轶) - Homepage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 0.815rem; /* Precise font size to match minimalist academic sites */
+            line-height: 1.5;
+            color: #1a1a1a;
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        /* Navigation Styling */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            border-bottom: 1px solid #f2f2f2;
+            margin-bottom: 2rem;
+            padding: 0.75rem 0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: flex-start;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-links a {
+            color: #666;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #000;
+            text-decoration: none;
+        }
+
+        h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.8rem; letter-spacing: -0.02em; }
+        h2 { 
+            font-size: 1.4rem; 
+            font-weight: 800; 
+            margin-top: 2.5rem; 
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+        .news-item { margin-bottom: 0.35rem; display: flex; gap: 0.75rem; align-items: flex-start; }
+        .news-date { font-weight: 500; min-width: 70px; color: #777; font-variant-numeric: tabular-nums; }
+        
+        /* Scroll Container (News & Awards) */
+        .scroll-box {
+            max-height: 120px;
+            overflow-y: auto;
+            padding-right: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: #e2e8f0 transparent;
+        }
+        .scroll-box::-webkit-scrollbar {
+            width: 4px;
+        }
+        .scroll-box::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .scroll-box::-webkit-scrollbar-thumb {
+            background-color: #e2e8f0;
+            border-radius: 20px;
+        }
+        .scroll-box::-webkit-scrollbar-thumb:hover {
+            background-color: #cbd5e1;
+        }
+        
+        /* Publication Item Styling with Image */
+        .pub-item { margin-bottom: 1.5rem; display: flex; gap: 1.25rem; align-items: flex-start; }
+        .pub-img-container { 
+            width: 160px; 
+            height: 90px; 
+            background: #f8fafc; 
+            border-radius: 4px; 
+            flex-shrink: 0; 
+            overflow: hidden; 
+            border: 1px solid #efefef;
+            transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pub-img-container:hover { transform: scale(1.02); }
+        .pub-img-container img { max-width: 100%; max-height: 100%; object-fit: contain; opacity: 1; }
+        .pub-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #f8fafc; color: #e2e8f0; }
+
+        .pub-content { flex: 1; }
+        .pub-title { font-weight: 600; font-size: 0.875rem; margin-bottom: 0.2rem; display: block; color: #111; line-height: 1.3; }
+        .pub-authors { font-size: 0.8rem; color: #555; margin-bottom: 0.2rem; }
+        .pub-venue { font-size: 0.8rem; color: #777; font-style: italic; }
+        .pub-links { margin-top: 0.4rem; display: flex; gap: 0.8rem; font-size: 0.75rem; font-weight: 500; }
+        
+        a { color: #005bb7; text-decoration: none; transition: all 0.2s; }
+        a:hover { color: #003d7a; text-decoration: underline; }
+        
+        .sidebar-link { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.8rem; font-size: 0.815rem; color: #555; }
+        .sidebar-link:hover { color: #3b82f6; }
+        
+        .me-highlight { font-weight: 600; text-decoration: underline; color: #000; }
+        
+        ul.interests-list { list-style: none; padding: 0; margin-top: 0.5rem; }
+        ul.interests-list li { position: relative; padding-left: 1.2rem; margin-bottom: 0.25rem; color: #444; }
+        ul.interests-list li::before { content: "•"; position: absolute; left: 0; color: #3b82f6; font-weight: bold; }
+        
+        header { scroll-margin-top: 5rem; }
+        section { margin-bottom: 2.5rem; scroll-margin-top: 5rem; }
+        footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid #f2f2f2; color: #999; font-size: 0.75rem; }
+
+        /* Artistic Photo Styles */
+        .art-photo-wrapper {
+            position: relative;
+            padding: 8px;
+        }
+        .art-photo-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 1px solid #e2e8f0;
+            border-radius: 50%;
+            z-index: 0;
+            transform: scale(1.05) rotate(-5deg);
+        }
+        .art-photo-container {
+            width: 210px;
+            height: 285px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #f8fafc;
+            border: 2px solid #fff;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        .art-photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Homepage</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#awards">Honors and Awards</a></li>
+                <li><a href="#education">Educations</a></li>
+            </ul>
+        </nav>
+
+        <!-- Header / Bio -->
+        <header id="about" class="flex flex-col md:flex-row gap-10 items-start mb-10">
+            <div class="flex-1">
+                <h1 class="text-xl font-semibold mb-2">Nanyi Wang (王南轶)</h1>
+                <p class="mb-4 text-slate-700">
+                    I am a PhD candidate at <b>Beijing Institute of Technology (BIT)</b> and a CSC Joint PhD student at <b>Nanyang Technological University (NTU)</b>. 
+                    My research stands at the dynamic intersection of Human-Computer Interaction (HCI) and Intelligent Design. 
+                    I am particularly dedicated to developing multimodal HCI/HRI systems and constructing robust psychophysiological computing models. 
+                    By leveraging affective computing and physiological data, I aim to bridge the gap between humans and machines, 
+                    creating more empathetic, adaptive, and intelligent interactive systems for the future.
+                </p>
+                
+                <div class="mb-4">
+                    <p class="font-semibold mb-1" style="font-size: 0.85rem;">Research Interests:</p>
+                    <ul class="interests-list">
+                        <li>Multi-modal Interaction and Human Factors</li>
+                        <li>Brain Data-Driven Human-Robot Interaction</li>
+                        <li>AI driven innovation of intangible cultural heritage</li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-wrap gap-x-6 mt-4">
+                    <a href="https://scholar.google.com/citations?user=Ig2qcRYAAAAJ" target="_blank" class="sidebar-link hover:text-blue-600">
+                        <i data-lucide="graduation-cap" class="w-4 h-4 text-blue-600"></i> Google Scholar
+                    </a>
+                    <a href="mailto:magicwong@bit.edu.cn" class="sidebar-link hover:text-red-500">
+                        <i data-lucide="mail" class="w-4 h-4 text-red-500"></i> Email
+                    </a>
+                    <a href="#" class="sidebar-link hover:text-black">
+                        <i data-lucide="github" class="w-4 h-4 text-slate-800"></i> GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="art-photo-wrapper flex-shrink-0">
+                <div class="art-photo-container">
+                    <img src="个人照片.jpg" alt="Nanyi Wang">
+                </div>
+            </div>
+        </header>
+
+        <section id="education">
+            <h2><span class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shadow-sm"><i data-lucide="graduation-cap" class="w-5 h-5"></i></span> EDUCATION</h2>
+            <div class="news-item">
+                <span class="news-date">2026 - present</span>
+                <span><b>Nanyang Technological University</b>, Singapore<br>CSC Joint PhD in Computer Science</span>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2023 - present</span>
+                <span><b>Beijing Institute of Technology</b>, Beijing, China<br>PhD Candidate in Industrial Design</span>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2020 - 2023</span>
+                <span><b>Nanchang University</b>, Nanchang, China<br>Master's Degree in Industrial Design Engineering</span>
+            </div>
+            <div class="news-item">
+                <span class="news-date">2015 - 2019</span>
+                <span><b>Sichuan Agricultural University</b>, Chengdu, China<br>Bachelor's Degree in Product Design</span>
+            </div>
+        </section>
+
+        <section id="news">
+                <h2><span class="w-10 h-10 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center shadow-sm"><i data-lucide="flame" class="w-5 h-5"></i></span> NEWS</h2>
+                <div class="scroll-box">
+                    <div class="news-item"><span class="news-date">2026.04</span><span>🏆 "AI-Powered Educational Platform: Texture AIxis" won the <i>iF Design Award — Winner</i>. Congratulations to my team!</span></div>
+                    <div class="news-item"><span class="news-date">2026.04</span><span>📜 "Sustainable design of bamboo weaving" accepted by <i>Journal of Engineering Design</i>. Congratulations to my team!</span></div>
+                    <div class="news-item"><span class="news-date">2025.05</span><span>📜 "Effects of information widgets on time perception" accepted by <i>CHI 2025</i>. Congratulations to my team!</span></div>
+                    <div class="news-item"><span class="news-date">2025.03</span><span>📜 "Integrating Kansei engineering and GA-CNN-Attention" published in <i>Journal of Engineering Design</i>. Congratulations to my team!</span></div>
+                    <div class="news-item"><span class="news-date">2025.02</span><span>📜 "Traditional pattern innovation via diffusion models" published in <i>npj Heritage Science</i>. Congratulations to my team!</span></div>
+                    <div class="news-item"><span class="news-date">2025.01</span><span>📜 "Affective social robot design" published in <i>Journal of Engineering Design</i>. Congratulations to my team!</span></div>
+                    <div class="news-item"><span class="news-date">2025.01</span><span>📜 "TRIZ vs Brainstorming in human-agent collaboration" published in <i>AI EDAM</i>. Congratulations to my team!</span></div>
+                    <div class="news-item"><span class="news-date">2024.11</span><span>📜 "Emotional values of bionic features" published in <i>Advanced Engineering Informatics</i>. Congratulations to my team!</span></div>
+                    <div class="news-item"><span class="news-date">2024.06</span><span>📜 "Emotional design of intelligent cockpit" published in <i>Advanced Engineering Informatics</i>. Congratulations to my team!</span></div>
+                    <div class="news-item"><span class="news-date">2024.05</span><span>📜 "SweepEase: Exergaming Desk" published in <i>Chinese CHI 2024</i>. Congratulations to my team!</span></div>
+                </div>
+          </section>
+
+        <!-- Publications -->
+        <section id="publications">
+             <h2><span class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-sm"><i data-lucide="book-open" class="w-5 h-5"></i></span> PUBLICATIONS</h2>
+            
+            <div class="pub-list">
+                <!-- 2026 -->
+                <div class="pub-item">
+                    <div class="pub-img-container">
+                        <img src="竹编.png" alt="Bamboo Weaving">
+                    </div>
+                    <div class="pub-content">
+                        <a href="https://scholar.google.com/citations?view_op=view_citation&citation_for_view=Ig2qcRYAAAAJ:9yKSN-GCB0IC" target="_blank" class="pub-title">Sustainable design of bamboo weaving: a research on systematic creation of bionic patterns</a>
+                        <p class="pub-authors"><span class="me-highlight">N Wang</span>, X Ren, S Ge, X Zhao</p>
+                        <p class="pub-venue">Journal of Engineering Design, 2026</p>
+                    </div>
+                </div>
+
+                <!-- 2025 -->
+                <div class="pub-item">
+                    <div class="pub-img-container">
+                        <img src="宝箱花纹.png" alt="Heritage Innovation">
+                    </div>
+                    <div class="pub-content">
+                        <a href="https://scholar.google.com/citations?view_op=view_citation&citation_for_view=Ig2qcRYAAAAJ:UeHWp8X0CEIC" target="_blank" class="pub-title">Exploring dual pathways for traditional pattern innovation: shape grammar and diffusion models</a>
+                        <p class="pub-authors">T Xiong, <span class="me-highlight">N Wang</span></p>
+                        <p class="pub-venue">npj Heritage Science 13 (1), 639, 2025</p>
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                    <div class="pub-img-container">
+                        <img src="triz.png" alt="AI EDAM">
+                    </div>
+                    <div class="pub-content">
+                        <a href="https://scholar.google.com/citations?view_op=view_citation&citation_for_view=Ig2qcRYAAAAJ:9yKSN-GCB0IC" target="_blank" class="pub-title">Comparing triz and brainstorming in human–agent design collaboration: Effects on cognitive processes and performance</a>
+                        <p class="pub-authors">S Ge, S Huang, X Song, Y Sun, <span class="me-highlight">N Wang</span>, K Qi, X Zhao, J Li, Y Cui</p>
+                        <p class="pub-venue">AI EDAM 39, e21, 2025</p>
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                    <div class="pub-img-container">
+                        <img src="emotionrobot.png" alt="Social Robot">
+                    </div>
+                    <div class="pub-content">
+                        <a href="https://scholar.google.com/citations?view_op=view_citation&citation_for_view=Ig2qcRYAAAAJ:d1gS?user=Ig2qcRYAAAAJ" target="_blank" class="pub-title">Combining style generative adversarial networks with particle swarm optimisation-support vector regression to design affective social robot for public health intervention</a>
+                        <p class="pub-authors">X Ren, <span class="me-highlight">N Wang</span>, J Pan, L Bu</p>
+                        <p class="pub-venue">Journal of Engineering Design 36 (1), 160-190, 2025</p>
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                    <div class="pub-img-container">
+                        <img src="TIME.png" alt="CHI">
+                    </div>
+                    <div class="pub-content">
+                        <a href="https://scholar.google.com/citations?view_op=view_citation&citation_for_view=Ig2qcRYAAAAJ:2osogNQ5qMEC" target="_blank" class="pub-title">Effects of information widgets on time perception during mentally demanding tasks</a>
+                        <p class="pub-authors">Z Li, D Shi, Q Gao, Y Chen, <span class="me-highlight">N Wang</span>, X Ren</p>
+                        <p class="pub-venue">Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems, 2025</p>
+                    </div>
+                </div>
+
+                <!-- 2024 -->
+                <div class="pub-item">
+                    <div class="pub-img-container">
+                        <img src="lstm.png" alt="Cockpit">
+                    </div>
+                    <div class="pub-content">
+                        <a href="https://scholar.google.com/citations?view_op=view_citation&citation_for_view=Ig2qcRYAAAAJ:9yKSN-GCB0IC" target="_blank" class="pub-title">Investigating emotional design of the intelligent cockpit based on visual sequence data and improved LSTM</a>
+                        <p class="pub-authors"><span class="me-highlight">N Wang</span>, D Shi, Z Li, P Chen, X Ren</p>
+                        <p class="pub-venue">Advanced Engineering Informatics 61, 102557, 2024</p>
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                    <div class="pub-img-container">
+                        <img src="er.png" alt="Robot">
+                    </div>
+                    <div class="pub-content">
+                        <a href="https://scholar.google.com/citations?view_op=view_citation&citation_for_view=Ig2qcRYAAAAJ:UeHWp8X0CEIC" target="_blank" class="pub-title">Understanding emotional values of bionic features for educational service robots: A cross-age examination using multi-modal data</a>
+                        <p class="pub-authors"><span class="me-highlight">N Wang</span>, Z Li, D Shi, P Chen, X Ren</p>
+                        <p class="pub-venue">Advanced Engineering Informatics 62, 102956, 2024</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="mt-8 text-slate-400 text-xs italic">
+                * View all research on <a href="https://scholar.google.com/citations?user=Ig2qcRYAAAAJ" target="_blank" class="underline">Google Scholar</a>.
+            </p>
+        </section>
+
+        <!-- Education & Awards -->
+        <section id="awards">
+             <h2><span class="w-10 h-10 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center shadow-sm"><i data-lucide="award" class="w-5 h-5"></i></span> HONORS AND AWARDS</h2>
+             <div class="scroll-box">
+                  <div class="news-item"><span class="news-date">2026</span><span>🏆 iF Design Award — Winner</span></div>
+                  <div class="news-item"><span class="news-date">2024</span><span>🏆 K-Design Award — Winner</span></div>
+                  <div class="news-item"><span class="news-date">2023</span><span>🏆 London International Creative Competition — Winner</span></div>
+                  <div class="news-item"><span class="news-date">2023</span><span>🏆 National College Digital Art & Design Awards</span></div>
+                  <div class="news-item"><span class="news-date">2022</span><span>🏆 Red Dot Award — Winner</span></div>
+                  <div class="news-item"><span class="news-date">2022</span><span>🏆 A' Design Award — Winner</span></div>
+                  <div class="news-item"><span class="news-date">2022</span><span>🏆 MUSE Design Awards — Silver Award</span></div>
+                  <div class="news-item"><span class="news-date">2022</span><span>🏆 International Busan Design Award — Silver Award</span></div>
+                  <div class="news-item"><span class="news-date">2022</span><span>🏆 Milan Design Week National Division — Third Prize</span></div>
+                  <div class="news-item"><span class="news-date">2021</span><span>🏆 Industrial Design Competition in Jiangxi Province — Bronze Award</span></div>
+                  <div class="news-item"><span class="news-date">2021</span><span>🏆 Hong Kong Global Design Awards — Merit Award</span></div>
+               </div>
+        </section>
+
+        <footer>
+            <div class="flex justify-between items-center">
+                <span>© 2026 Nanyi Wang (王南轶)</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
